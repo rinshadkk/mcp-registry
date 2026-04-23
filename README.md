@@ -10,20 +10,31 @@ A Firebase-hosted registry of MCP (Model Context Protocol) servers. Used by the
 
 ## Catalog
 
-14 verified MCP servers across 8 categories:
+55 MCP servers across 23 categories:
 
 | Category | Servers |
 |---|---|
-| Search | Brave Search |
+| Productivity | Google Drive, Notion, Linear, Jira/Confluence, Airtable, Google Calendar, Google Sheets, Asana |
+| Database | PostgreSQL, SQLite, MySQL, MongoDB, Redis, Supabase, Elasticsearch |
+| Development | GitHub, GitLab, Git, Sentry, GitHub Actions |
+| Communication | Slack, Discord, Gmail, Twilio, SendGrid |
+| Cloud | Cloudflare, AWS Knowledge Base, AWS, Vercel |
+| AI | OpenAI, Pinecone, EverArt |
+| Search | Brave Search, Perplexity |
+| Browser | Playwright, Puppeteer |
+| Infrastructure | Docker, Kubernetes |
+| CRM | HubSpot, Salesforce |
+| Media | YouTube, Spotify |
+| Payments | Stripe |
+| Ecommerce | Shopify |
+| Design | Figma |
+| Social | X / Twitter |
+| Observability | Datadog |
 | Web | Fetch |
-| Development | GitHub, GitLab |
+| Utilities | Filesystem, Time |
 | Location | Google Maps |
 | Memory | Memory (Knowledge Graph) |
-| Database | PostgreSQL, SQLite |
-| Browser | Puppeteer |
 | Reasoning | Sequential Thinking |
-| Communication | Slack |
-| Utilities | Time |
 | Weather | OpenWeather |
 | Testing | Everything |
 

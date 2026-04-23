@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "updated_at": "2026-04-20T00:00:00Z",
+  "version": "1.1.0",
+  "updated_at": "2026-04-22T00:00:00Z",
   "registry_url": "https://biome-registry.web.app",
   "servers": [
     {
@@ -40,6 +40,53 @@
         ]
       },
       "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "filesystem",
+      "name": "Filesystem",
+      "description": "Read, write, move, search and manage local files and directories. Sandboxed to allowed paths.",
+      "capabilities": [
+        "read_file", "read_multiple_files", "write_file", "edit_file",
+        "create_directory", "list_directory", "directory_tree",
+        "move_file", "search_files", "get_file_info", "list_allowed_directories"
+      ],
+      "category": "utilities",
+      "tags": ["filesystem", "files", "local", "read", "write", "directory"],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-filesystem",
+        "args": ["$ALLOWED_DIRECTORY"],
+        "env_required": [
+          { "key": "ALLOWED_DIRECTORY", "description": "Absolute path of directory the server may access" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "git",
+      "name": "Git",
+      "description": "Read and manipulate local Git repositories — log, diff, blame, branches, commits, and status.",
+      "capabilities": [
+        "git_status", "git_diff", "git_log", "git_show",
+        "git_blame", "git_branch", "git_checkout", "git_commit"
+      ],
+      "category": "development",
+      "tags": ["git", "version-control", "commits", "diff", "repository"],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-server-git",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          { "key": "GIT_REPO_PATH", "description": "Default repository path" }
+        ]
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/git",
       "version": "latest",
       "verified": true
     },
@@ -92,72 +139,52 @@
       "verified": true
     },
     {
-      "id": "google-maps",
-      "name": "Google Maps",
-      "description": "Geocoding, reverse geocoding, directions, place search, elevation, and distance matrix via the Google Maps API.",
+      "id": "sentry",
+      "name": "Sentry",
+      "description": "Query Sentry for errors, issues, events, releases, and project stats. Useful for debugging and monitoring.",
       "capabilities": [
-        "maps_geocode", "maps_reverse_geocode", "maps_search_places",
-        "maps_directions", "maps_elevation", "maps_distance_matrix"
+        "sentry_list_issues", "sentry_get_issue", "sentry_list_events",
+        "sentry_get_event", "sentry_list_projects", "sentry_list_releases"
       ],
-      "category": "location",
-      "tags": ["maps", "geocoding", "directions", "places", "google", "location", "navigation"],
+      "category": "development",
+      "tags": ["sentry", "errors", "monitoring", "debugging", "observability"],
       "install": {
-        "type": "npx",
-        "package": "@modelcontextprotocol/server-google-maps",
+        "type": "uvx",
+        "package": "mcp-server-sentry",
         "args": [],
         "env_required": [
-          { "key": "GOOGLE_MAPS_API_KEY", "description": "Google Maps Platform API key" }
+          { "key": "SENTRY_AUTH_TOKEN", "description": "Sentry auth token (Settings → API → Auth Tokens)" },
+          { "key": "SENTRY_ORG_SLUG", "description": "Your Sentry organisation slug" }
         ],
-        "env_optional": []
+        "env_optional": [
+          { "key": "SENTRY_URL", "description": "Self-hosted Sentry URL (default: https://sentry.io)" }
+        ]
       },
-      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/google-maps",
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/sentry",
       "version": "latest",
       "verified": true
     },
     {
-      "id": "memory",
-      "name": "Memory (Knowledge Graph)",
-      "description": "Persistent knowledge graph memory. Create entities, store relations, and query structured facts across sessions.",
+      "id": "playwright",
+      "name": "Playwright",
+      "description": "Full browser automation via Microsoft Playwright — navigate, click, fill, screenshot, extract content, run JS.",
       "capabilities": [
-        "memory_create_entities", "memory_create_relations",
-        "memory_search_nodes", "memory_read_graph",
-        "memory_add_observations", "memory_delete_entities"
+        "playwright_navigate", "playwright_click", "playwright_fill",
+        "playwright_screenshot", "playwright_evaluate", "playwright_select",
+        "playwright_wait_for_selector", "playwright_get_text"
       ],
-      "category": "memory",
-      "tags": ["memory", "knowledge", "graph", "entities", "relations", "persistent"],
+      "category": "browser",
+      "tags": ["browser", "playwright", "automation", "screenshot", "scrape", "microsoft"],
       "install": {
         "type": "npx",
-        "package": "@modelcontextprotocol/server-memory",
+        "package": "@playwright/mcp",
         "args": [],
         "env_required": [],
         "env_optional": [
-          { "key": "MEMORY_FILE_PATH", "description": "Path to the knowledge graph JSON file (default: in-memory)" }
+          { "key": "PLAYWRIGHT_HEADLESS", "description": "Run browser headless (default: true)" }
         ]
       },
-      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
-      "version": "latest",
-      "verified": true
-    },
-    {
-      "id": "postgres",
-      "name": "PostgreSQL",
-      "description": "Read-only and read-write access to a PostgreSQL database. Run queries, list schemas, describe tables.",
-      "capabilities": [
-        "postgres_query", "postgres_list_tables",
-        "postgres_describe_table", "postgres_list_schemas"
-      ],
-      "category": "database",
-      "tags": ["postgres", "postgresql", "sql", "database", "query"],
-      "install": {
-        "type": "npx",
-        "package": "@modelcontextprotocol/server-postgres",
-        "args": ["$POSTGRES_CONNECTION_STRING"],
-        "env_required": [
-          { "key": "POSTGRES_CONNECTION_STRING", "description": "PostgreSQL connection string (e.g. postgresql://user:pass@host/db)" }
-        ],
-        "env_optional": []
-      },
-      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/postgres",
+      "source_url": "https://github.com/microsoft/playwright-mcp",
       "version": "latest",
       "verified": true
     },
@@ -186,20 +213,73 @@
       "verified": true
     },
     {
-      "id": "sequential-thinking",
-      "name": "Sequential Thinking",
-      "description": "Structured multi-step reasoning tool. Breaks complex problems into sequential thoughts with revision support.",
-      "capabilities": ["sequential_thinking"],
-      "category": "reasoning",
-      "tags": ["reasoning", "thinking", "chain-of-thought", "planning", "analysis"],
+      "id": "google-maps",
+      "name": "Google Maps",
+      "description": "Geocoding, reverse geocoding, directions, place search, elevation, and distance matrix via the Google Maps API.",
+      "capabilities": [
+        "maps_geocode", "maps_reverse_geocode", "maps_search_places",
+        "maps_directions", "maps_elevation", "maps_distance_matrix"
+      ],
+      "category": "location",
+      "tags": ["maps", "geocoding", "directions", "places", "google", "location", "navigation"],
       "install": {
         "type": "npx",
-        "package": "@modelcontextprotocol/server-sequential-thinking",
+        "package": "@modelcontextprotocol/server-google-maps",
         "args": [],
-        "env_required": [],
+        "env_required": [
+          { "key": "GOOGLE_MAPS_API_KEY", "description": "Google Maps Platform API key" }
+        ],
         "env_optional": []
       },
-      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/google-maps",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "gdrive",
+      "name": "Google Drive",
+      "description": "Search, read, list, and export files from Google Drive including Docs, Sheets, and Slides.",
+      "capabilities": [
+        "gdrive_search", "gdrive_read_file", "gdrive_list_files",
+        "gdrive_create_file", "gdrive_update_file", "gdrive_export"
+      ],
+      "category": "productivity",
+      "tags": ["google", "drive", "documents", "files", "cloud", "storage"],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-gdrive",
+        "args": [],
+        "env_required": [
+          { "key": "GDRIVE_CLIENT_ID", "description": "Google OAuth2 client ID" },
+          { "key": "GDRIVE_CLIENT_SECRET", "description": "Google OAuth2 client secret" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/gdrive",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "description": "Read and write Notion pages, databases, blocks, and comments. Official Notion MCP integration.",
+      "capabilities": [
+        "notion_search", "notion_get_page", "notion_create_page",
+        "notion_update_page", "notion_get_database", "notion_query_database",
+        "notion_append_block", "notion_add_comment"
+      ],
+      "category": "productivity",
+      "tags": ["notion", "notes", "wiki", "database", "pages", "productivity"],
+      "install": {
+        "type": "npx",
+        "package": "@notionhq/notion-mcp-server",
+        "args": [],
+        "env_required": [
+          { "key": "NOTION_API_KEY", "description": "Notion integration token (notion.so/my-integrations)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/makenotion/notion-mcp-server",
       "version": "latest",
       "verified": true
     },
@@ -229,6 +309,127 @@
       "verified": true
     },
     {
+      "id": "discord",
+      "name": "Discord",
+      "description": "Send messages, manage channels, read message history, and interact with Discord servers via the bot API.",
+      "capabilities": [
+        "discord_send_message", "discord_get_messages",
+        "discord_list_channels", "discord_create_channel",
+        "discord_get_server_info", "discord_add_reaction"
+      ],
+      "category": "communication",
+      "tags": ["discord", "chat", "messaging", "gaming", "community"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-discord",
+        "args": [],
+        "env_required": [
+          { "key": "DISCORD_BOT_TOKEN", "description": "Discord bot token (discord.com/developers)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/v-3/discordmcp",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "description": "Manage Linear issues, projects, cycles, and teams. Create, update, and search issues programmatically.",
+      "capabilities": [
+        "linear_get_issues", "linear_create_issue", "linear_update_issue",
+        "linear_get_projects", "linear_get_teams", "linear_search_issues",
+        "linear_get_cycles"
+      ],
+      "category": "productivity",
+      "tags": ["linear", "issues", "project-management", "engineering", "tasks"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-linear",
+        "args": [],
+        "env_required": [
+          { "key": "LINEAR_API_KEY", "description": "Linear API key (linear.app/settings/api)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/jerhadf/linear-mcp-server",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "jira",
+      "name": "Jira & Confluence (Atlassian)",
+      "description": "Read and write Jira issues, projects, sprints, and Confluence pages via the Atlassian REST API.",
+      "capabilities": [
+        "jira_get_issue", "jira_create_issue", "jira_update_issue",
+        "jira_search_issues", "jira_get_project", "jira_list_projects",
+        "confluence_get_page", "confluence_search"
+      ],
+      "category": "productivity",
+      "tags": ["jira", "confluence", "atlassian", "project-management", "agile", "tickets"],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-atlassian",
+        "args": [],
+        "env_required": [
+          { "key": "JIRA_URL", "description": "Your Jira instance URL (e.g. https://yourcompany.atlassian.net)" },
+          { "key": "JIRA_EMAIL", "description": "Atlassian account email" },
+          { "key": "JIRA_API_TOKEN", "description": "Atlassian API token (id.atlassian.com/manage-profile/security/api-tokens)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/sooperset/mcp-atlassian",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "description": "Interact with Stripe — query customers, payments, subscriptions, invoices, and products via the Stripe API.",
+      "capabilities": [
+        "stripe_list_customers", "stripe_get_customer", "stripe_list_payments",
+        "stripe_get_payment", "stripe_list_subscriptions", "stripe_list_products",
+        "stripe_create_payment_link", "stripe_list_invoices"
+      ],
+      "category": "payments",
+      "tags": ["stripe", "payments", "billing", "subscriptions", "finance", "ecommerce"],
+      "install": {
+        "type": "npx",
+        "package": "@stripe/agent-toolkit",
+        "args": [],
+        "env_required": [
+          { "key": "STRIPE_SECRET_KEY", "description": "Stripe secret key (sk_live_... or sk_test_...)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/stripe/agent-toolkit",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "postgres",
+      "name": "PostgreSQL",
+      "description": "Read-only and read-write access to a PostgreSQL database. Run queries, list schemas, describe tables.",
+      "capabilities": [
+        "postgres_query", "postgres_list_tables",
+        "postgres_describe_table", "postgres_list_schemas"
+      ],
+      "category": "database",
+      "tags": ["postgres", "postgresql", "sql", "database", "query"],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-postgres",
+        "args": ["$POSTGRES_CONNECTION_STRING"],
+        "env_required": [
+          { "key": "POSTGRES_CONNECTION_STRING", "description": "PostgreSQL connection string (e.g. postgresql://user:pass@host/db)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/postgres",
+      "version": "latest",
+      "verified": true
+    },
+    {
       "id": "sqlite",
       "name": "SQLite",
       "description": "Create and query SQLite databases. Run SQL queries, inspect schemas, and build business intelligence tools.",
@@ -248,6 +449,705 @@
         "env_optional": []
       },
       "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "mysql",
+      "name": "MySQL",
+      "description": "Connect to MySQL/MariaDB databases, run queries, list tables, describe schemas, and execute DDL/DML.",
+      "capabilities": [
+        "mysql_query", "mysql_execute", "mysql_list_tables",
+        "mysql_describe_table", "mysql_list_databases"
+      ],
+      "category": "database",
+      "tags": ["mysql", "mariadb", "sql", "database", "query"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-mysql",
+        "args": [],
+        "env_required": [
+          { "key": "MYSQL_HOST", "description": "MySQL server hostname" },
+          { "key": "MYSQL_USER", "description": "MySQL username" },
+          { "key": "MYSQL_PASSWORD", "description": "MySQL password" },
+          { "key": "MYSQL_DATABASE", "description": "Default database name" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/benborla/mcp-server-mysql",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "mongodb",
+      "name": "MongoDB",
+      "description": "Query and manage MongoDB collections — find, insert, update, delete, aggregate, and manage indexes.",
+      "capabilities": [
+        "mongodb_find", "mongodb_insert", "mongodb_update",
+        "mongodb_delete", "mongodb_aggregate", "mongodb_list_collections",
+        "mongodb_create_index"
+      ],
+      "category": "database",
+      "tags": ["mongodb", "nosql", "database", "document", "atlas"],
+      "install": {
+        "type": "npx",
+        "package": "mongodb-mcp-server",
+        "args": [],
+        "env_required": [
+          { "key": "MONGODB_CONNECTION_STRING", "description": "MongoDB connection string (mongodb://... or mongodb+srv://...)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/mongodb-js/mongodb-mcp-server",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "redis",
+      "name": "Redis",
+      "description": "Interact with Redis — get/set keys, manage hashes, lists, sets, streams, and pub/sub channels.",
+      "capabilities": [
+        "redis_get", "redis_set", "redis_delete", "redis_keys",
+        "redis_hget", "redis_hset", "redis_lpush", "redis_rpop",
+        "redis_publish", "redis_subscribe", "redis_expire"
+      ],
+      "category": "database",
+      "tags": ["redis", "cache", "key-value", "pubsub", "queue"],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-redis",
+        "args": [],
+        "env_required": [
+          { "key": "REDIS_URL", "description": "Redis connection URL (e.g. redis://localhost:6379)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/redis",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "description": "Query Supabase tables, run SQL, manage auth users, storage buckets, edge functions, and realtime channels.",
+      "capabilities": [
+        "supabase_query", "supabase_insert", "supabase_update",
+        "supabase_delete", "supabase_rpc", "supabase_list_tables",
+        "supabase_storage_list", "supabase_storage_download"
+      ],
+      "category": "database",
+      "tags": ["supabase", "postgres", "database", "auth", "storage", "backend"],
+      "install": {
+        "type": "npx",
+        "package": "@supabase/mcp-server-supabase",
+        "args": [],
+        "env_required": [
+          { "key": "SUPABASE_URL", "description": "Your Supabase project URL (https://xxx.supabase.co)" },
+          { "key": "SUPABASE_SERVICE_ROLE_KEY", "description": "Service role key from Project Settings → API" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/supabase-community/supabase-mcp",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "description": "Manage Cloudflare Workers, KV, D1, R2, and DNS records. Deploy and query Workers from the command line.",
+      "capabilities": [
+        "cloudflare_list_workers", "cloudflare_deploy_worker",
+        "cloudflare_kv_get", "cloudflare_kv_put", "cloudflare_kv_list",
+        "cloudflare_d1_query", "cloudflare_r2_list", "cloudflare_dns_list"
+      ],
+      "category": "cloud",
+      "tags": ["cloudflare", "workers", "kv", "d1", "r2", "cdn", "serverless"],
+      "install": {
+        "type": "npx",
+        "package": "@cloudflare/mcp-server-cloudflare",
+        "args": [],
+        "env_required": [
+          { "key": "CLOUDFLARE_API_TOKEN", "description": "Cloudflare API token (dash.cloudflare.com/profile/api-tokens)" },
+          { "key": "CLOUDFLARE_ACCOUNT_ID", "description": "Cloudflare account ID" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/cloudflare/mcp-server-cloudflare",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "aws-kb-retrieval",
+      "name": "AWS Knowledge Base (Bedrock)",
+      "description": "Retrieve and query Amazon Bedrock Knowledge Bases using RAG for enterprise document search.",
+      "capabilities": [
+        "aws_kb_retrieve", "aws_kb_retrieve_and_generate"
+      ],
+      "category": "cloud",
+      "tags": ["aws", "bedrock", "rag", "knowledge-base", "retrieval", "amazon"],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-aws-kb-retrieval",
+        "args": [],
+        "env_required": [
+          { "key": "AWS_ACCESS_KEY_ID", "description": "AWS access key ID" },
+          { "key": "AWS_SECRET_ACCESS_KEY", "description": "AWS secret access key" },
+          { "key": "AWS_REGION", "description": "AWS region (e.g. us-east-1)" },
+          { "key": "AWS_KB_ID", "description": "Bedrock Knowledge Base ID" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/aws-kb-retrieval",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "hubspot",
+      "name": "HubSpot",
+      "description": "Manage HubSpot CRM — contacts, companies, deals, tickets, properties, and timeline events.",
+      "capabilities": [
+        "hubspot_get_contacts", "hubspot_create_contact", "hubspot_update_contact",
+        "hubspot_get_companies", "hubspot_get_deals", "hubspot_create_deal",
+        "hubspot_search_crm", "hubspot_get_tickets"
+      ],
+      "category": "crm",
+      "tags": ["hubspot", "crm", "sales", "marketing", "contacts", "deals"],
+      "install": {
+        "type": "npx",
+        "package": "@hubspot/mcp-server",
+        "args": [],
+        "env_required": [
+          { "key": "HUBSPOT_ACCESS_TOKEN", "description": "HubSpot private app access token" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/HubSpot/hubspot-mcp-server",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "shopify",
+      "name": "Shopify",
+      "description": "Manage Shopify stores — products, orders, customers, inventory, and collections via the Admin API.",
+      "capabilities": [
+        "shopify_list_products", "shopify_get_product", "shopify_update_product",
+        "shopify_list_orders", "shopify_get_order", "shopify_list_customers",
+        "shopify_get_inventory", "shopify_list_collections"
+      ],
+      "category": "ecommerce",
+      "tags": ["shopify", "ecommerce", "products", "orders", "inventory", "store"],
+      "install": {
+        "type": "npx",
+        "package": "shopify-mcp-server",
+        "args": [],
+        "env_required": [
+          { "key": "SHOPIFY_ACCESS_TOKEN", "description": "Shopify Admin API access token" },
+          { "key": "MYSHOPIFY_DOMAIN", "description": "Your store domain (e.g. mystore.myshopify.com)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/Shopify/dev-mcp",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "airtable",
+      "name": "Airtable",
+      "description": "Read, create, update, and delete Airtable records. List bases, tables, and fields. Run formula queries.",
+      "capabilities": [
+        "airtable_list_bases", "airtable_list_tables", "airtable_list_records",
+        "airtable_get_record", "airtable_create_records", "airtable_update_records",
+        "airtable_delete_records", "airtable_search_records"
+      ],
+      "category": "productivity",
+      "tags": ["airtable", "spreadsheet", "database", "no-code", "records"],
+      "install": {
+        "type": "npx",
+        "package": "@airtable/mcp-server",
+        "args": [],
+        "env_required": [
+          { "key": "AIRTABLE_PERSONAL_ACCESS_TOKEN", "description": "Airtable personal access token (airtable.com/create/tokens)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/Airtable/mcp-server",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "gmail",
+      "name": "Gmail",
+      "description": "Read, send, search, and manage Gmail messages, threads, labels, and attachments.",
+      "capabilities": [
+        "gmail_list_messages", "gmail_get_message", "gmail_send_message",
+        "gmail_search_messages", "gmail_list_labels", "gmail_create_draft",
+        "gmail_reply_to_message", "gmail_trash_message"
+      ],
+      "category": "communication",
+      "tags": ["gmail", "email", "google", "inbox", "messages"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-gmail",
+        "args": [],
+        "env_required": [
+          { "key": "GMAIL_CLIENT_ID", "description": "Google OAuth2 client ID" },
+          { "key": "GMAIL_CLIENT_SECRET", "description": "Google OAuth2 client secret" },
+          { "key": "GMAIL_REFRESH_TOKEN", "description": "OAuth2 refresh token" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/gokhanarman/mcp-gmail",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "google-calendar",
+      "name": "Google Calendar",
+      "description": "Create, read, update, and delete Google Calendar events. List calendars and manage attendees.",
+      "capabilities": [
+        "calendar_list_events", "calendar_get_event", "calendar_create_event",
+        "calendar_update_event", "calendar_delete_event", "calendar_list_calendars",
+        "calendar_check_availability"
+      ],
+      "category": "productivity",
+      "tags": ["google", "calendar", "events", "scheduling", "meetings"],
+      "install": {
+        "type": "npx",
+        "package": "@google-labs/calendar-mcp",
+        "args": [],
+        "env_required": [
+          { "key": "GOOGLE_CLIENT_ID", "description": "Google OAuth2 client ID" },
+          { "key": "GOOGLE_CLIENT_SECRET", "description": "Google OAuth2 client secret" },
+          { "key": "GOOGLE_REFRESH_TOKEN", "description": "OAuth2 refresh token with calendar scope" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/nspilman/mcp-google-calendar",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "description": "Manage Vercel deployments, projects, domains, environment variables, and logs via the Vercel API.",
+      "capabilities": [
+        "vercel_list_deployments", "vercel_get_deployment",
+        "vercel_list_projects", "vercel_get_project",
+        "vercel_list_domains", "vercel_get_deployment_logs",
+        "vercel_list_env_vars", "vercel_cancel_deployment"
+      ],
+      "category": "cloud",
+      "tags": ["vercel", "deployments", "hosting", "serverless", "next.js"],
+      "install": {
+        "type": "npx",
+        "package": "@vercel/mcp-adapter",
+        "args": [],
+        "env_required": [
+          { "key": "VERCEL_TOKEN", "description": "Vercel API token (vercel.com/account/tokens)" }
+        ],
+        "env_optional": [
+          { "key": "VERCEL_TEAM_ID", "description": "Team ID for team-scoped operations" }
+        ]
+      },
+      "source_url": "https://github.com/vercel/mcp",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "description": "Manage Docker containers, images, volumes, and networks. Run, stop, inspect, and exec into containers.",
+      "capabilities": [
+        "docker_list_containers", "docker_run_container", "docker_stop_container",
+        "docker_exec", "docker_list_images", "docker_pull_image",
+        "docker_logs", "docker_inspect", "docker_list_volumes"
+      ],
+      "category": "infrastructure",
+      "tags": ["docker", "containers", "devops", "infrastructure", "deployment"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-docker",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          { "key": "DOCKER_HOST", "description": "Docker daemon socket (default: unix:///var/run/docker.sock)" }
+        ]
+      },
+      "source_url": "https://github.com/ckreiling/mcp-server-docker",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "kubernetes",
+      "name": "Kubernetes",
+      "description": "Manage Kubernetes clusters — list and describe pods, deployments, services, logs, and apply manifests.",
+      "capabilities": [
+        "k8s_list_pods", "k8s_get_pod", "k8s_pod_logs",
+        "k8s_list_deployments", "k8s_list_services",
+        "k8s_list_namespaces", "k8s_apply_manifest", "k8s_delete_resource"
+      ],
+      "category": "infrastructure",
+      "tags": ["kubernetes", "k8s", "containers", "devops", "clusters"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-kubernetes",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          { "key": "KUBECONFIG", "description": "Path to kubeconfig file (default: ~/.kube/config)" }
+        ]
+      },
+      "source_url": "https://github.com/Flux159/mcp-server-kubernetes",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "aws",
+      "name": "AWS",
+      "description": "Interact with AWS services — S3, EC2, Lambda, CloudWatch, DynamoDB, SQS, and more via the AWS SDK.",
+      "capabilities": [
+        "aws_s3_list", "aws_s3_get", "aws_s3_put",
+        "aws_ec2_list_instances", "aws_lambda_list", "aws_lambda_invoke",
+        "aws_cloudwatch_logs", "aws_dynamodb_query", "aws_sqs_send"
+      ],
+      "category": "cloud",
+      "tags": ["aws", "s3", "ec2", "lambda", "cloud", "amazon"],
+      "install": {
+        "type": "npx",
+        "package": "aws-mcp-server",
+        "args": [],
+        "env_required": [
+          { "key": "AWS_ACCESS_KEY_ID", "description": "AWS access key ID" },
+          { "key": "AWS_SECRET_ACCESS_KEY", "description": "AWS secret access key" },
+          { "key": "AWS_REGION", "description": "Default AWS region (e.g. us-east-1)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/aws-samples/aws-mcp-servers-samples",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "description": "Inspect Figma files, frames, components, and design tokens. Extract styles, assets, and layout properties.",
+      "capabilities": [
+        "figma_get_file", "figma_get_node", "figma_list_components",
+        "figma_get_styles", "figma_get_comments", "figma_list_projects",
+        "figma_export_image"
+      ],
+      "category": "design",
+      "tags": ["figma", "design", "ui", "components", "assets", "prototyping"],
+      "install": {
+        "type": "npx",
+        "package": "figma-mcp",
+        "args": [],
+        "env_required": [
+          { "key": "FIGMA_ACCESS_TOKEN", "description": "Figma personal access token (figma.com/settings)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/GLips/Figma-Context-MCP",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "twilio",
+      "name": "Twilio",
+      "description": "Send SMS, WhatsApp messages, make voice calls, and manage Twilio phone numbers and conversations.",
+      "capabilities": [
+        "twilio_send_sms", "twilio_send_whatsapp",
+        "twilio_list_messages", "twilio_list_calls",
+        "twilio_list_phone_numbers", "twilio_create_call"
+      ],
+      "category": "communication",
+      "tags": ["twilio", "sms", "whatsapp", "voice", "messaging", "phone"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-twilio",
+        "args": [],
+        "env_required": [
+          { "key": "TWILIO_ACCOUNT_SID", "description": "Twilio Account SID (console.twilio.com)" },
+          { "key": "TWILIO_AUTH_TOKEN", "description": "Twilio auth token" },
+          { "key": "TWILIO_FROM_NUMBER", "description": "Your Twilio phone number (e.g. +15551234567)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "sendgrid",
+      "name": "SendGrid",
+      "description": "Send transactional and marketing emails, manage contacts and lists, query stats via the SendGrid API.",
+      "capabilities": [
+        "sendgrid_send_email", "sendgrid_send_template",
+        "sendgrid_list_contacts", "sendgrid_add_contact",
+        "sendgrid_get_stats", "sendgrid_list_templates"
+      ],
+      "category": "communication",
+      "tags": ["sendgrid", "email", "transactional", "marketing", "smtp"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-sendgrid",
+        "args": [],
+        "env_required": [
+          { "key": "SENDGRID_API_KEY", "description": "SendGrid API key (app.sendgrid.com/settings/api_keys)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/Lukas-Elias/sendgrid-mcp",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "asana",
+      "name": "Asana",
+      "description": "Manage Asana tasks, projects, teams, and workspaces. Create, update, search, and complete tasks.",
+      "capabilities": [
+        "asana_list_tasks", "asana_get_task", "asana_create_task",
+        "asana_update_task", "asana_complete_task",
+        "asana_list_projects", "asana_list_workspaces", "asana_search_tasks"
+      ],
+      "category": "productivity",
+      "tags": ["asana", "tasks", "project-management", "team", "productivity"],
+      "install": {
+        "type": "npx",
+        "package": "@asana/mcp",
+        "args": [],
+        "env_required": [
+          { "key": "ASANA_ACCESS_TOKEN", "description": "Asana personal access token (app.asana.com/0/my-apps)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/Asana/asana-mcp-server",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "google-sheets",
+      "name": "Google Sheets",
+      "description": "Read and write Google Sheets — get values, update cells, append rows, create/format spreadsheets.",
+      "capabilities": [
+        "sheets_get_values", "sheets_update_values", "sheets_append_values",
+        "sheets_create_spreadsheet", "sheets_list_spreadsheets",
+        "sheets_add_sheet", "sheets_batch_update"
+      ],
+      "category": "productivity",
+      "tags": ["google", "sheets", "spreadsheet", "data", "excel"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-google-sheets",
+        "args": [],
+        "env_required": [
+          { "key": "GOOGLE_CLIENT_ID", "description": "Google OAuth2 client ID" },
+          { "key": "GOOGLE_CLIENT_SECRET", "description": "Google OAuth2 client secret" },
+          { "key": "GOOGLE_REFRESH_TOKEN", "description": "OAuth2 refresh token with sheets scope" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/Dumpling0421/mcp-google-sheets",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "pinecone",
+      "name": "Pinecone",
+      "description": "Query and manage Pinecone vector indexes — upsert, query by vector, list namespaces, and delete vectors.",
+      "capabilities": [
+        "pinecone_upsert", "pinecone_query", "pinecone_delete",
+        "pinecone_list_indexes", "pinecone_describe_index",
+        "pinecone_fetch_vectors", "pinecone_list_namespaces"
+      ],
+      "category": "ai",
+      "tags": ["pinecone", "vector", "embeddings", "similarity", "search", "ai"],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-pinecone",
+        "args": [],
+        "env_required": [
+          { "key": "PINECONE_API_KEY", "description": "Pinecone API key (app.pinecone.io/organizations)" }
+        ],
+        "env_optional": [
+          { "key": "PINECONE_INDEX_NAME", "description": "Default index to query" }
+        ]
+      },
+      "source_url": "https://github.com/sirmews/mcp-pinecone",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "description": "Index, search, and manage Elasticsearch documents. Full-text search, aggregations, and index management.",
+      "capabilities": [
+        "elasticsearch_search", "elasticsearch_index_document",
+        "elasticsearch_get_document", "elasticsearch_delete_document",
+        "elasticsearch_list_indices", "elasticsearch_create_index",
+        "elasticsearch_aggregate"
+      ],
+      "category": "database",
+      "tags": ["elasticsearch", "search", "fulltext", "analytics", "logging"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-elasticsearch",
+        "args": [],
+        "env_required": [
+          { "key": "ELASTICSEARCH_URL", "description": "Elasticsearch node URL (e.g. http://localhost:9200)" }
+        ],
+        "env_optional": [
+          { "key": "ELASTICSEARCH_API_KEY", "description": "Elasticsearch API key for auth" }
+        ]
+      },
+      "source_url": "https://github.com/elastic/mcp-server-elasticsearch",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "description": "Access OpenAI models — completions, embeddings, image generation (DALL-E), and assistants API.",
+      "capabilities": [
+        "openai_chat", "openai_complete", "openai_embed",
+        "openai_generate_image", "openai_transcribe",
+        "openai_list_models", "openai_create_assistant"
+      ],
+      "category": "ai",
+      "tags": ["openai", "gpt", "llm", "embeddings", "dalle", "ai"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-openai",
+        "args": [],
+        "env_required": [
+          { "key": "OPENAI_API_KEY", "description": "OpenAI API key (platform.openai.com/api-keys)" }
+        ],
+        "env_optional": [
+          { "key": "OPENAI_ORG_ID", "description": "OpenAI organisation ID" }
+        ]
+      },
+      "source_url": "https://github.com/mzxrai/mcp-openai",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "description": "Search YouTube videos, get transcripts/captions, retrieve channel info and video metadata.",
+      "capabilities": [
+        "youtube_search", "youtube_get_transcript",
+        "youtube_get_video_info", "youtube_list_channel_videos",
+        "youtube_get_channel_info", "youtube_get_comments"
+      ],
+      "category": "media",
+      "tags": ["youtube", "video", "transcripts", "search", "google"],
+      "install": {
+        "type": "uvx",
+        "package": "mcp-server-youtube-transcript",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          { "key": "YOUTUBE_API_KEY", "description": "YouTube Data API v3 key (required for search/metadata)" }
+        ]
+      },
+      "source_url": "https://github.com/kimtth/mcp-aoai-web-browsing",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "spotify",
+      "name": "Spotify",
+      "description": "Control Spotify playback, search tracks and albums, manage playlists, and get recommendations.",
+      "capabilities": [
+        "spotify_search", "spotify_play", "spotify_pause",
+        "spotify_next_track", "spotify_get_current_track",
+        "spotify_list_playlists", "spotify_add_to_playlist",
+        "spotify_get_recommendations"
+      ],
+      "category": "media",
+      "tags": ["spotify", "music", "playback", "playlists", "audio"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-spotify",
+        "args": [],
+        "env_required": [
+          { "key": "SPOTIFY_CLIENT_ID", "description": "Spotify app client ID (developer.spotify.com)" },
+          { "key": "SPOTIFY_CLIENT_SECRET", "description": "Spotify app client secret" },
+          { "key": "SPOTIFY_REDIRECT_URI", "description": "OAuth redirect URI registered in your Spotify app" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/varunneal/spotify-mcp",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "twitter",
+      "name": "X / Twitter",
+      "description": "Post tweets, read timelines, search tweets, manage DMs and lists via the X/Twitter API v2.",
+      "capabilities": [
+        "twitter_post_tweet", "twitter_get_timeline",
+        "twitter_search_tweets", "twitter_get_user",
+        "twitter_list_followers", "twitter_send_dm",
+        "twitter_like_tweet", "twitter_retweet"
+      ],
+      "category": "social",
+      "tags": ["twitter", "x", "social", "tweets", "posts"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-twitter",
+        "args": [],
+        "env_required": [
+          { "key": "TWITTER_API_KEY", "description": "X/Twitter API key" },
+          { "key": "TWITTER_API_SECRET", "description": "X/Twitter API secret" },
+          { "key": "TWITTER_ACCESS_TOKEN", "description": "OAuth access token" },
+          { "key": "TWITTER_ACCESS_SECRET", "description": "OAuth access token secret" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/EnesCinr/twitter-mcp",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "memory",
+      "name": "Memory (Knowledge Graph)",
+      "description": "Persistent knowledge graph memory. Create entities, store relations, and query structured facts across sessions.",
+      "capabilities": [
+        "memory_create_entities", "memory_create_relations",
+        "memory_search_nodes", "memory_read_graph",
+        "memory_add_observations", "memory_delete_entities"
+      ],
+      "category": "memory",
+      "tags": ["memory", "knowledge", "graph", "entities", "relations", "persistent"],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-memory",
+        "args": [],
+        "env_required": [],
+        "env_optional": [
+          { "key": "MEMORY_FILE_PATH", "description": "Path to the knowledge graph JSON file (default: in-memory)" }
+        ]
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "sequential-thinking",
+      "name": "Sequential Thinking",
+      "description": "Structured multi-step reasoning tool. Breaks complex problems into sequential thoughts with revision support.",
+      "capabilities": ["sequential_thinking"],
+      "category": "reasoning",
+      "tags": ["reasoning", "thinking", "chain-of-thought", "planning", "analysis"],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-sequential-thinking",
+        "args": [],
+        "env_required": [],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
       "version": "latest",
       "verified": true
     },
@@ -290,6 +1190,128 @@
       "source_url": "https://github.com/modelcontextprotocol/servers",
       "version": "latest",
       "verified": true
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "description": "Query and manage Salesforce objects — leads, contacts, accounts, opportunities, cases via SOQL and REST API.",
+      "capabilities": [
+        "salesforce_query", "salesforce_get_record", "salesforce_create_record",
+        "salesforce_update_record", "salesforce_list_objects",
+        "salesforce_describe_object", "salesforce_search"
+      ],
+      "category": "crm",
+      "tags": ["salesforce", "crm", "leads", "opportunities", "soql"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-salesforce",
+        "args": [],
+        "env_required": [
+          { "key": "SALESFORCE_INSTANCE_URL", "description": "Salesforce instance URL (e.g. https://mycompany.salesforce.com)" },
+          { "key": "SALESFORCE_ACCESS_TOKEN", "description": "Salesforce OAuth access token" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "everart",
+      "name": "EverArt",
+      "description": "Generate AI images using EverArt's image generation API. Create artwork, illustrations, and visual assets.",
+      "capabilities": [
+        "everart_generate_image", "everart_list_models"
+      ],
+      "category": "ai",
+      "tags": ["image", "ai", "generation", "art", "visual", "dalle", "stable-diffusion"],
+      "install": {
+        "type": "npx",
+        "package": "@modelcontextprotocol/server-everart",
+        "args": [],
+        "env_required": [
+          { "key": "EVERART_API_KEY", "description": "EverArt API key (everart.ai)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/modelcontextprotocol/servers/tree/main/src/everart",
+      "version": "latest",
+      "verified": true
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity",
+      "description": "AI-powered search and summarisation using Perplexity's Sonar API. Returns cited, up-to-date answers.",
+      "capabilities": ["perplexity_search", "perplexity_ask"],
+      "category": "search",
+      "tags": ["perplexity", "search", "ai", "research", "citations"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-perplexity",
+        "args": [],
+        "env_required": [
+          { "key": "PERPLEXITY_API_KEY", "description": "Perplexity API key (perplexity.ai/settings/api)" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/tanigami/mcp-server-perplexity",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "datadog",
+      "name": "Datadog",
+      "description": "Query Datadog metrics, logs, monitors, dashboards, and incidents for observability and alerting.",
+      "capabilities": [
+        "datadog_query_metrics", "datadog_query_logs",
+        "datadog_list_monitors", "datadog_get_monitor",
+        "datadog_list_dashboards", "datadog_list_incidents",
+        "datadog_get_host_map"
+      ],
+      "category": "observability",
+      "tags": ["datadog", "metrics", "logs", "monitoring", "alerting", "apm"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-server-datadog",
+        "args": [],
+        "env_required": [
+          { "key": "DD_API_KEY", "description": "Datadog API key (app.datadoghq.com/organization-settings/api-keys)" },
+          { "key": "DD_APP_KEY", "description": "Datadog application key" }
+        ],
+        "env_optional": [
+          { "key": "DD_SITE", "description": "Datadog site (default: datadoghq.com)" }
+        ]
+      },
+      "source_url": "https://github.com/pab1it0/datadog-mcp-server",
+      "version": "latest",
+      "verified": false
+    },
+    {
+      "id": "github-actions",
+      "name": "GitHub Actions",
+      "description": "Trigger, monitor, and inspect GitHub Actions workflow runs, jobs, and artifacts.",
+      "capabilities": [
+        "actions_list_workflows", "actions_list_runs",
+        "actions_get_run", "actions_trigger_workflow",
+        "actions_get_run_logs", "actions_list_jobs",
+        "actions_list_artifacts", "actions_cancel_run"
+      ],
+      "category": "development",
+      "tags": ["github", "actions", "ci", "cd", "automation", "workflows"],
+      "install": {
+        "type": "npx",
+        "package": "mcp-github-actions",
+        "args": [],
+        "env_required": [
+          { "key": "GITHUB_PERSONAL_ACCESS_TOKEN", "description": "GitHub token with workflow scope" },
+          { "key": "GITHUB_OWNER", "description": "Repository owner (user or org name)" },
+          { "key": "GITHUB_REPO", "description": "Repository name" }
+        ],
+        "env_optional": []
+      },
+      "source_url": "https://github.com/ko1ynnky/github-actions-mcp-server",
+      "version": "latest",
+      "verified": false
     },
     {
       "id": "everything",
