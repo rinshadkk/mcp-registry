@@ -1,6 +1,6 @@
 {
   "version": "1.4.0",
-  "updated_at": "2026-04-25T12:00:00Z",
+  "updated_at": "2026-04-26T00:00:00Z",
   "registry_url": "https://biome-registry.web.app",
   "servers": [
     {
@@ -25,7 +25,7 @@
         "env_required": [
           {
             "key": "BRAVE_API_KEY",
-            "description": "Brave Search API key \u2014 get one free at https://api.search.brave.com"
+            "description": "Brave Search API key — get one free at https://api.search.brave.com"
           }
         ],
         "env_optional": []
@@ -114,7 +114,7 @@
     {
       "id": "git",
       "name": "Git",
-      "description": "Read and manipulate local Git repositories \u2014 log, diff, blame, branches, commits, and status.",
+      "description": "Read and manipulate local Git repositories — log, diff, blame, branches, commits, and status.",
       "capabilities": [
         "git_status",
         "git_diff",
@@ -152,7 +152,7 @@
     {
       "id": "github",
       "name": "GitHub",
-      "description": "Interact with GitHub repositories \u2014 search code, manage issues, pull requests, files, and branches via the GitHub API.",
+      "description": "Interact with GitHub repositories — search code, manage issues, pull requests, files, and branches via the GitHub API.",
       "capabilities": [
         "github_search_repos",
         "github_search_code",
@@ -193,7 +193,7 @@
     {
       "id": "gitlab",
       "name": "GitLab",
-      "description": "Interact with GitLab projects \u2014 manage issues, merge requests, files, pipelines, and repositories.",
+      "description": "Interact with GitLab projects — manage issues, merge requests, files, pipelines, and repositories.",
       "capabilities": [
         "gitlab_create_issue",
         "gitlab_list_issues",
@@ -258,7 +258,7 @@
         "env_required": [
           {
             "key": "SENTRY_AUTH_TOKEN",
-            "description": "Sentry auth token (Settings \u2192 API \u2192 Auth Tokens)"
+            "description": "Sentry auth token (Settings → API → Auth Tokens)"
           },
           {
             "key": "SENTRY_ORG_SLUG",
@@ -279,7 +279,7 @@
     {
       "id": "playwright",
       "name": "Playwright",
-      "description": "Full browser automation via Microsoft Playwright \u2014 navigate, click, fill, screenshot, extract content, run JS.",
+      "description": "Full browser automation via Microsoft Playwright — navigate, click, fill, screenshot, extract content, run JS.",
       "capabilities": [
         "playwright_navigate",
         "playwright_click",
@@ -318,7 +318,7 @@
     {
       "id": "puppeteer",
       "name": "Puppeteer",
-      "description": "Browser automation \u2014 navigate pages, take screenshots, click elements, fill forms, evaluate JavaScript.",
+      "description": "Browser automation — navigate pages, take screenshots, click elements, fill forms, evaluate JavaScript.",
       "capabilities": [
         "puppeteer_navigate",
         "puppeteer_screenshot",
@@ -635,7 +635,7 @@
     {
       "id": "stripe",
       "name": "Stripe",
-      "description": "Interact with Stripe \u2014 query customers, payments, subscriptions, invoices, and products via the Stripe API.",
+      "description": "Interact with Stripe — query customers, payments, subscriptions, invoices, and products via the Stripe API.",
       "capabilities": [
         "stripe_list_customers",
         "stripe_get_customer",
@@ -796,7 +796,7 @@
     {
       "id": "mongodb",
       "name": "MongoDB",
-      "description": "Query and manage MongoDB collections \u2014 find, insert, update, delete, aggregate, and manage indexes.",
+      "description": "Query and manage MongoDB collections — find, insert, update, delete, aggregate, and manage indexes.",
       "capabilities": [
         "mongodb_find",
         "mongodb_insert",
@@ -833,7 +833,7 @@
     {
       "id": "redis",
       "name": "Redis",
-      "description": "Interact with Redis \u2014 get/set keys, manage hashes, lists, sets, streams, and pub/sub channels.",
+      "description": "Interact with Redis — get/set keys, manage hashes, lists, sets, streams, and pub/sub channels.",
       "capabilities": [
         "redis_get",
         "redis_set",
@@ -905,7 +905,7 @@
           },
           {
             "key": "SUPABASE_SERVICE_ROLE_KEY",
-            "description": "Service role key from Project Settings \u2192 API"
+            "description": "Service role key from Project Settings → API"
           }
         ],
         "env_optional": []
@@ -1006,7 +1006,7 @@
     {
       "id": "hubspot",
       "name": "HubSpot",
-      "description": "Manage HubSpot CRM \u2014 contacts, companies, deals, tickets, properties, and timeline events.",
+      "description": "Manage HubSpot CRM — contacts, companies, deals, tickets, properties, and timeline events.",
       "capabilities": [
         "hubspot_get_contacts",
         "hubspot_create_contact",
@@ -1045,7 +1045,7 @@
     {
       "id": "shopify",
       "name": "Shopify",
-      "description": "Manage Shopify stores \u2014 products, orders, customers, inventory, and collections via the Admin API.",
+      "description": "Manage Shopify stores — products, orders, customers, inventory, and collections via the Admin API.",
       "capabilities": [
         "shopify_list_products",
         "shopify_get_product",
@@ -1299,7 +1299,7 @@
     {
       "id": "kubernetes",
       "name": "Kubernetes",
-      "description": "Manage Kubernetes clusters \u2014 list and describe pods, deployments, services, logs, and apply manifests.",
+      "description": "Manage Kubernetes clusters — list and describe pods, deployments, services, logs, and apply manifests.",
       "capabilities": [
         "k8s_list_pods",
         "k8s_get_pod",
@@ -1337,7 +1337,7 @@
     {
       "id": "aws",
       "name": "AWS",
-      "description": "Interact with AWS services \u2014 S3, EC2, Lambda, CloudWatch, DynamoDB, SQS, and more via the AWS SDK.",
+      "description": "Interact with AWS services — S3, EC2, Lambda, CloudWatch, DynamoDB, SQS, and more via the AWS SDK.",
       "capabilities": [
         "aws_s3_list",
         "aws_s3_get",
@@ -1542,7 +1542,7 @@
     {
       "id": "google-sheets",
       "name": "Google Sheets",
-      "description": "Read and write Google Sheets \u2014 get values, update cells, append rows, create/format spreadsheets.",
+      "description": "Read and write Google Sheets — get values, update cells, append rows, create/format spreadsheets.",
       "capabilities": [
         "sheets_get_values",
         "sheets_update_values",
@@ -1587,7 +1587,7 @@
     {
       "id": "pinecone",
       "name": "Pinecone",
-      "description": "Query and manage Pinecone vector indexes \u2014 upsert, query by vector, list namespaces, and delete vectors.",
+      "description": "Query and manage Pinecone vector indexes — upsert, query by vector, list namespaces, and delete vectors.",
       "capabilities": [
         "pinecone_upsert",
         "pinecone_query",
@@ -1672,7 +1672,7 @@
     {
       "id": "openai",
       "name": "OpenAI",
-      "description": "Access OpenAI models \u2014 completions, embeddings, image generation (DALL-E), and assistants API.",
+      "description": "Access OpenAI models — completions, embeddings, image generation (DALL-E), and assistants API.",
       "capabilities": [
         "openai_chat",
         "openai_complete",
@@ -1974,7 +1974,7 @@
     {
       "id": "salesforce",
       "name": "Salesforce",
-      "description": "Query and manage Salesforce objects \u2014 leads, contacts, accounts, opportunities, cases via SOQL and REST API.",
+      "description": "Query and manage Salesforce objects — leads, contacts, accounts, opportunities, cases via SOQL and REST API.",
       "capabilities": [
         "salesforce_query",
         "salesforce_get_record",
@@ -2204,7 +2204,7 @@
     {
       "id": "tavily",
       "name": "Tavily Search",
-      "description": "AI-native web search API designed for LLM agents. Returns clean, relevant search results with optional content extraction \u2014 no scraping needed.",
+      "description": "AI-native web search API designed for LLM agents. Returns clean, relevant search results with optional content extraction — no scraping needed.",
       "capabilities": [
         "tavily_search",
         "tavily_extract"
@@ -2225,7 +2225,7 @@
         "env_required": [
           {
             "key": "TAVILY_API_KEY",
-            "description": "Tavily API key \u2014 get one free at https://tavily.com"
+            "description": "Tavily API key — get one free at https://tavily.com"
           }
         ],
         "env_optional": []
@@ -2237,7 +2237,7 @@
     {
       "id": "exa",
       "name": "Exa Search",
-      "description": "Semantic and keyword web search with full content retrieval. Returns high-quality results from a neural search engine \u2014 ideal for research and RAG pipelines.",
+      "description": "Semantic and keyword web search with full content retrieval. Returns high-quality results from a neural search engine — ideal for research and RAG pipelines.",
       "capabilities": [
         "exa_search",
         "exa_find_similar",
@@ -2260,7 +2260,7 @@
         "env_required": [
           {
             "key": "EXA_API_KEY",
-            "description": "Exa API key \u2014 get one at https://exa.ai"
+            "description": "Exa API key — get one at https://exa.ai"
           }
         ],
         "env_optional": []
@@ -2296,7 +2296,7 @@
         "env_required": [
           {
             "key": "NEON_API_KEY",
-            "description": "Neon API key \u2014 get one at https://neon.tech/docs/manage/api-keys"
+            "description": "Neon API key — get one at https://neon.tech/docs/manage/api-keys"
           }
         ],
         "env_optional": []
@@ -2426,7 +2426,7 @@
         "env_required": [
           {
             "key": "UPSTASH_REDIS_REST_URL",
-            "description": "Upstash Redis REST URL \u2014 from https://console.upstash.com"
+            "description": "Upstash Redis REST URL — from https://console.upstash.com"
           },
           {
             "key": "UPSTASH_REDIS_REST_TOKEN",
@@ -2473,7 +2473,7 @@
         "env_required": [
           {
             "key": "RESEND_API_KEY",
-            "description": "Resend API key \u2014 get one at https://resend.com/api-keys"
+            "description": "Resend API key — get one at https://resend.com/api-keys"
           }
         ],
         "env_optional": []
@@ -2507,7 +2507,7 @@
         "env_required": [
           {
             "key": "TELEGRAM_BOT_TOKEN",
-            "description": "Telegram Bot token \u2014 create a bot via @BotFather at https://t.me/BotFather"
+            "description": "Telegram Bot token — create a bot via @BotFather at https://t.me/BotFather"
           }
         ],
         "env_optional": [
@@ -2548,7 +2548,7 @@
         "env_required": [
           {
             "key": "OBSIDIAN_API_KEY",
-            "description": "Obsidian Local REST API key \u2014 install the Local REST API community plugin first"
+            "description": "Obsidian Local REST API key — install the Local REST API community plugin first"
           },
           {
             "key": "OBSIDIAN_HOST",
@@ -2588,7 +2588,7 @@
         "env_required": [
           {
             "key": "TODOIST_API_TOKEN",
-            "description": "Todoist API token \u2014 get one at https://todoist.com/prefs/integrations"
+            "description": "Todoist API token — get one at https://todoist.com/prefs/integrations"
           }
         ],
         "env_optional": []
@@ -2725,7 +2725,7 @@
         "env_required": [
           {
             "key": "PAGERDUTY_API_TOKEN",
-            "description": "PagerDuty REST API token \u2014 create one at Account Settings > API Access"
+            "description": "PagerDuty REST API token — create one at Account Settings > API Access"
           }
         ],
         "env_optional": [
@@ -2774,7 +2774,7 @@
           },
           {
             "key": "ZENDESK_API_TOKEN",
-            "description": "Zendesk API token \u2014 generate one at Admin > Channels > API"
+            "description": "Zendesk API token — generate one at Admin > Channels > API"
           }
         ],
         "env_optional": []
@@ -2809,7 +2809,7 @@
         "env_required": [
           {
             "key": "POSTHOG_API_KEY",
-            "description": "PostHog personal API key \u2014 create one at Settings > Personal API Keys"
+            "description": "PostHog personal API key — create one at Settings > Personal API Keys"
           },
           {
             "key": "POSTHOG_HOST",
@@ -2852,7 +2852,7 @@
         "env_required": [
           {
             "key": "MIXPANEL_PROJECT_TOKEN",
-            "description": "Mixpanel project token \u2014 found in Project Settings"
+            "description": "Mixpanel project token — found in Project Settings"
           },
           {
             "key": "MIXPANEL_SERVICE_ACCOUNT_USERNAME",
@@ -2902,7 +2902,7 @@
         "env_required": [
           {
             "key": "INTERCOM_ACCESS_TOKEN",
-            "description": "Intercom access token \u2014 create one at Settings > Integrations > Developer Hub"
+            "description": "Intercom access token — create one at Settings > Integrations > Developer Hub"
           }
         ],
         "env_optional": []
@@ -2938,7 +2938,7 @@
         "env_required": [
           {
             "key": "NETLIFY_ACCESS_TOKEN",
-            "description": "Netlify personal access token \u2014 create one at User Settings > Applications"
+            "description": "Netlify personal access token — create one at User Settings > Applications"
           }
         ],
         "env_optional": []
@@ -2950,7 +2950,7 @@
     {
       "id": "linear-extended",
       "name": "Linear (Extended)",
-      "description": "Full Linear project management integration \u2014 issues, cycles, projects, teams, labels, and comments. Richer capability set than the base Linear server.",
+      "description": "Full Linear project management integration — issues, cycles, projects, teams, labels, and comments. Richer capability set than the base Linear server.",
       "capabilities": [
         "linear_get_issue",
         "linear_create_issue",
@@ -2976,7 +2976,7 @@
         "env_required": [
           {
             "key": "LINEAR_API_KEY",
-            "description": "Linear API key \u2014 create one at Settings > API > Personal API keys"
+            "description": "Linear API key — create one at Settings > API > Personal API keys"
           }
         ],
         "env_optional": []
@@ -2988,7 +2988,7 @@
     {
       "id": "anthropic-claude",
       "name": "Anthropic Claude",
-      "description": "Call Claude models directly from within workflows. Supports text generation, structured output, vision, and tool use \u2014 useful for LLM-as-a-tool patterns.",
+      "description": "Call Claude models directly from within workflows. Supports text generation, structured output, vision, and tool use — useful for LLM-as-a-tool patterns.",
       "capabilities": [
         "claude_complete",
         "claude_vision",
@@ -3011,7 +3011,7 @@
         "env_required": [
           {
             "key": "ANTHROPIC_API_KEY",
-            "description": "Anthropic API key \u2014 get one at https://console.anthropic.com/settings/keys"
+            "description": "Anthropic API key — get one at https://console.anthropic.com/settings/keys"
           }
         ],
         "env_optional": [
@@ -3028,7 +3028,7 @@
     {
       "id": "openai-extended",
       "name": "OpenAI (Extended)",
-      "description": "Access OpenAI's full API \u2014 GPT-4o, DALL-E 3, Whisper, TTS, embeddings, fine-tuning, and the Assistants API. Richer than the base OpenAI server.",
+      "description": "Access OpenAI's full API — GPT-4o, DALL-E 3, Whisper, TTS, embeddings, fine-tuning, and the Assistants API. Richer than the base OpenAI server.",
       "capabilities": [
         "openai_chat",
         "openai_image_generate",
@@ -3053,7 +3053,7 @@
         "env_required": [
           {
             "key": "OPENAI_API_KEY",
-            "description": "OpenAI API key \u2014 get one at https://platform.openai.com/api-keys"
+            "description": "OpenAI API key — get one at https://platform.openai.com/api-keys"
           }
         ],
         "env_optional": [
@@ -3115,7 +3115,7 @@
     {
       "id": "notion-extended",
       "name": "Notion (Extended)",
-      "description": "Full Notion API integration \u2014 pages, databases, blocks, and search. Create rich content, query databases with filters, and manage workspace structure.",
+      "description": "Full Notion API integration — pages, databases, blocks, and search. Create rich content, query databases with filters, and manage workspace structure.",
       "capabilities": [
         "notion_search",
         "notion_get_page",
@@ -3141,7 +3141,7 @@
         "env_required": [
           {
             "key": "NOTION_API_KEY",
-            "description": "Notion internal integration token \u2014 create one at https://www.notion.so/my-integrations"
+            "description": "Notion internal integration token — create one at https://www.notion.so/my-integrations"
           }
         ],
         "env_optional": []
@@ -3265,11 +3265,7 @@
         "Skills & Agents"
       ],
       "capabilities": [
-        "browse_web",
-        "take_screenshot",
-        "fill_form",
-        "extract_text",
-        "click_element"
+        "browse_web"
       ],
       "install": {
         "type": "docker",
@@ -3357,7 +3353,15 @@
         "Skills & Agents"
       ],
       "capabilities": [
-        "serper_search"
+        "serper_search",
+        "serper_news",
+        "serper_images",
+        "serper_shopping",
+        "serper_scholar",
+        "serper_patents",
+        "serper_places",
+        "serper_videos",
+        "serper_autocomplete"
       ],
       "install": {
         "type": "docker",
@@ -3365,7 +3369,7 @@
         "env_required": [
           {
             "key": "SERPER_API_KEY",
-            "description": "Serper.dev API key \u2014 get one free at https://serper.dev"
+            "description": "Serper.dev API key — get one free at https://serper.dev"
           }
         ],
         "env_optional": [],
@@ -3486,9 +3490,13 @@
       ],
       "capabilities": [
         "schedule_task",
+        "get_task",
         "list_scheduled_tasks",
+        "update_scheduled_task",
         "cancel_scheduled_task",
-        "update_scheduled_task"
+        "delete_task",
+        "validate_cron",
+        "get_task_status"
       ],
       "install": {
         "type": "docker",
@@ -3546,7 +3554,7 @@
     {
       "id": "skill-slack",
       "name": "Slack Agent",
-      "description": "Slack integration for the orchestrator. Send messages to channels, post DMs, list channels, and react to incoming Slack events. Uses Socket Mode \u2014 no public URL needed.",
+      "description": "Slack integration for the orchestrator. Send messages to channels, post DMs, list channels, and react to incoming Slack events. Uses Socket Mode — no public URL needed.",
       "tags": [
         "slack",
         "messaging",
